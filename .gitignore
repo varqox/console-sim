@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# makefile
+.depend
+.makefile.swp
