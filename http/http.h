@@ -1,15 +1,12 @@
 #pragma once
 
-#include "../dependencies/sockets.hpp"
+#include <curl/curl.h>
+#include <string>
 
 class HTTP
 {
 public:
-	enum Method {};
-	HTTP(Method, std::string);
-
-	enum Header {};
-	void addHeader(Header, std::string);
+	HTTP(std::string);
 
 	void setBody(std::string);
 
@@ -17,4 +14,7 @@ public:
 	std::string getResponse();
 
 private:
+	std::string response;
+	CURL *curl;
+	static size_t write_to_str(void*, size_t, size_t, std::string*);
 };
