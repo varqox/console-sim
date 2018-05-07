@@ -1,6 +1,7 @@
 #include "http.h"
 
 #include <iostream>
+#include <string.h>
 
 size_t HTTP::write_to_str(void *contents, size_t size, size_t nmemb, std::string *s)
 {
@@ -16,11 +17,13 @@ HTTP::HTTP(std::string path)
 	curl_easy_setopt(curl, CURLOPT_URL, ("https://oboz.sim.ugo.si" + path).c_str());
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_to_str);
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
+	curl_easy_setopt(curl, CURLOPT_COOKIEFILE, "");
 }
 
 void HTTP::setBody(std::string s)
 {
-	curl_easy_setopt(curl, CURLOPT_POSTFIELDS, s.c_str());
+	body = s;
+	curl_easy_setopt(curl, CURLOPT_POSTFIELDS, body.c_str());
 }
 
 bool HTTP::send()
@@ -30,11 +33,20 @@ bool HTTP::send()
 		return false;
 	curl_easy_cleanup(curl);
 
-	std::cout << response << std::endl;
 	return true;
 }
 
 std::string HTTP::getResponse()
 {
 	return response;
+}
+
+bool HTTP::logIn(std::string username, std::string password)
+{
+	setBody("username=" + username + "&password=" + password + "&persistent-login=on&csfr_token=");
+
+	if(!send())
+		return false;
+
+	return true;
 }
