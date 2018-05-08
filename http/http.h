@@ -8,15 +8,17 @@ class HTTP
 public:
 	HTTP(std::string);
 
-	void setBody(std::string);
+	HTTP&  setBody(std::string);
 
-	bool send();
+	HTTP&  send();
 	std::string getResponse();
 
-	bool logIn(std::string, std::string);
+	HTTP&  logIn(std::string, std::string);
+
+	HTTP&  setDebug(long);
 private:
 	std::string response;
-	std::string body;
+	std::string uri, body;
 	CURL *curl;
 	static size_t write_to_str(void*, size_t, size_t, std::string*);
 };

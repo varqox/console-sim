@@ -7,8 +7,9 @@ int main()
 {
 	curl_global_init(CURL_GLOBAL_DEFAULT);
 
-	HTTP http("/login");
-	http.logIn("console-sim", "xd");
+	HTTP("/login").logIn("console-sim", "xd");
+
+	std::cout << HTTP("/api/contests").send().getResponse() << std::endl;
 
 	curl_global_cleanup();
 }

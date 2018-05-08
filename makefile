@@ -11,7 +11,6 @@ OBJS=$(subst .cpp,.o,$(SRCS))
 all: main
 
 main: $(OBJS)
-	@echo $(LDLIBS)
 	$(CXX) $(CPPFLAGS) -o main $(OBJS) $(LDLIBS)
 
 depend: .depend
