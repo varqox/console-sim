@@ -8,14 +8,14 @@ class HTTP
 public:
 	HTTP(std::string);
 
-	HTTP&  setBody(std::string);
+	HTTP& setBody(std::string);
 
-	HTTP&  send();
+	HTTP& send();
 	std::string getResponse();
 
-	HTTP&  logIn(std::string, std::string);
+	HTTP& logIn(std::string, std::string);
 
-	HTTP&  setDebug(long);
+	HTTP& setDebug(long);
 private:
 	std::string response;
 	std::string uri, body;
