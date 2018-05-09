@@ -1,4 +1,4 @@
-SRCS=main.cpp http/http.cpp
+SRCS=main.cpp http/http.cpp objects/contests.cpp
 
 
 CXX=clang++
