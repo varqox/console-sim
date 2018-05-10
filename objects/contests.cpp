@@ -5,14 +5,12 @@
 Contests::Contests()
 {
 	parsed = json::parse(HTTP("/api/contests").send().getResponse());
-	//std::cout << parsed.dump(4) << "\n";
-	for(int i = 1; i < (int)parsed.size(); i++)
+	for(size_t i = 1; i < parsed.size(); i++)
 		list.emplace_back(parsed[i]);
 }
 
 Contests::Contest::Contest(json data)
 {
-	//std::cout << data.dump(4) << "\n";
 	id = data[0];
 	name = data[1];
 	is_public = data[2];
