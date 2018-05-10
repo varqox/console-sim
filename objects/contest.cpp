@@ -72,29 +72,31 @@ void Contest::dump()
 			  << "name: " << name << "\n"
 			  << "is_public: " << is_public << "\n"
 			  << "user_mode: " << user_mode << "\n"
-			  << "actions " << actions << "\n";
+			  << "actions: " << actions << "\n"
+			  << "rounds:\n";
 
-	for(size_t i = 0; i < rounds.size(); i++)
+	for(Round &r : rounds)
 	{
-		std::cout << "round: " << i << "\n{\n"
-				  << "    id: " << rounds[i].id << "\n"
-				  << "    name: " << rounds[i].name << "\n"
-				  << "    item: " << rounds[i].item << "\n"
-				  << "    ranking_exposure: " << rounds[i].ranking_exposure << "\n"
-				  << "    begins: " << rounds[i].begins << "\n"
-				  << "    full_results: " << rounds[i].full_results << "\n"
-				  << "    end: " << rounds[i].ends << "\n";
-		for(size_t j = 0; j < rounds[i].problems.size(); j++)
+		std::cout << "{\n"
+				  << "    id: " << r.id << "\n"
+				  << "    name: " << r.name << "\n"
+				  << "    item: " << r.item << "\n"
+				  << "    ranking_exposure: " << r.ranking_exposure << "\n"
+				  << "    begins: " << r.begins << "\n"
+				  << "    full_results: " << r.full_results << "\n"
+				  << "    end: " << r.ends << "\n"
+				  << "    problems:\n";
+		for(Round::Problem &p : r.problems)
 		{
-			std::cout << "    problem: " << j << "\n    {\n"
-					  << "        id: " << rounds[i].problems[j].id << "\n"
-					  << "        round_id: " << rounds[i].problems[j].round_id << "\n"
-					  << "        problem_id: " << rounds[i].problems[j].problem_id << "\n"
-					  << "        problem_label: " << rounds[i].problems[j].problem_label << "\n"
-					  << "        name: " << rounds[i].problems[j].name << "\n"
-					  << "        item: " << rounds[i].problems[j].item << "\n"
-					  << "        final_selecting_method: " << rounds[i].problems[j].final_selecting_method << "\n"
-					  << "        reveal_score: " << rounds[i].problems[j].reveal_score << "\n"
+			std::cout << "    {\n"
+					  << "        id: " << p.id << "\n"
+					  << "        round_id: " << p.round_id << "\n"
+					  << "        problem_id: " << p.problem_id << "\n"
+					  << "        problem_label: " << p.problem_label << "\n"
+					  << "        name: " << p.name << "\n"
+					  << "        item: " << p.item << "\n"
+					  << "        final_selecting_method: " << p.final_selecting_method << "\n"
+					  << "        reveal_score: " << p.reveal_score << "\n"
 					  << "    }\n";
 		}
 		std::cout << "}\n";
