@@ -9,7 +9,7 @@ int main()
 {
 	curl_global_init(CURL_GLOBAL_DEFAULT);
 
-	HTTP("/login").logIn("console-sim", "xd");
+	HTTP("/login").logIn("console-sim", "xddddd");
 	Contest(1).dump();
 
 	curl_global_cleanup();
